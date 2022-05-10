@@ -40,34 +40,34 @@ This is lab2 report.
 
 ## Features
 
-- map(f)
-- add(item)
-- find(key)
-- remove(key)
-- size( )
-- to_list( )
-- from_list(a)
-- filter(p)
-- map(f)
-- reduce(f, initial_state)
-- empty( )
-- concat(dict)
-- get(key)
-- member(key)
-- __next__( )
-- __iter__( )
+- cons(lst, x)
+- remove(lst,x)
+- leng(lst)
+- member(lst,v)
+- revese(lst)
+- to_list(lst)
+- from_list(list)
+- find(lst, function)
+- filter(lst, function)
+- map(lst, increment)
+- reduce(lst, sum)
+- iterator(lst)
+- empty()
+- concat(lst1, lst2)
+- __eq__( )
+- __str__( )
 
 ## Contribution
 
-- Fan Yuxin (1124626243@qq.com) -- Dict_mutable.py
+- Fan Yuxin (1124626243@qq.com) -- Dict_mutable_test.py
 - Wen Wenchao(285404190@qq.com) -- Dict_mutable.py
 
 ## Changelog
 
 - Fan Yuxin uploaded `Dynamic_array_test.py`.
-- 13.04.2022 - 1
+- 10.05.2022 - 1
 - Wen Wenchao uploaded `Dynamic_array.py`.
-- 11.04.2022 - 0
+- 10.05.2022 - 0
   - Initial
 
 ## Design notes
