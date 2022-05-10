@@ -35,7 +35,7 @@ This is lab2 report.
 ## Project structure
 
 - `Dynamic_array.py` -- implementation of `Dynamic_array` 
-- class with `Add_a_new_element` 、`Remove` etc.
+class with `Add_a_new_element` 、`Remove` etc.
 - `Dynamic_array_test.py` -- unit and PBT tests for `Dynamic_array`.
 
 ## Features
