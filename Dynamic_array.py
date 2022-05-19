@@ -51,7 +51,7 @@ class Iterator(object):
     """ An iterator object of DynamicArray. """
 
     def __init__(self: 'Iterator',
-                 chunk: list[Optional[DeType]],
+                 chunk: list[Optional[int]],
                  length: int) -> None:
         self.chunk = chunk
         self.length = length
