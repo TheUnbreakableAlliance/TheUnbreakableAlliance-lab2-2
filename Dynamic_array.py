@@ -189,7 +189,7 @@ def from_list(lst: list) -> DynamicArray:
 
 
 def find(lst: DynamicArray,
-         function: Callable[[...], Any]) -> bool:
+         function: Callable[[Optional[int]], Any]) -> bool:
     """ Search the elements that match the function
 
     :param lst: DynamicArray
@@ -204,7 +204,7 @@ def find(lst: DynamicArray,
 
 
 def filter(lst: DynamicArray,
-           function: Callable[[...], Any]) -> DynamicArray:
+           function: Callable[[Optional[int]], Any]) -> DynamicArray:
     """ Filter the array by specific function
 
     :param lst: DynamicArray
@@ -220,7 +220,7 @@ def filter(lst: DynamicArray,
 
 
 def map(lst: DynamicArray,
-        function: Callable[[...], Any]) -> DynamicArray:
+        function: Callable[[Optional[int]], Any]) -> DynamicArray:
     """ Applied function to every item of instances of DynamicArray,
     yielding the results.
 
