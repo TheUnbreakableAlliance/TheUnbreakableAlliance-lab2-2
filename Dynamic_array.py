@@ -166,7 +166,7 @@ def to_list(lst: DynamicArray) -> list:
     :return: list
     """
     assert type(lst) == DynamicArray
-    res: list[int] = []
+    res: list[DeType] = []
     for i in range(lst.length):
         res.append(lst.chunk[i])
     return res
