@@ -98,7 +98,7 @@ def cons(lst: Optional[DynamicArray],
     :return: DynamicArray
     """
     if type(lst) is int and type(element) == DynamicArray:
-        res = cons(element, lst)
+        res = cons(lst, element)
     else:
         assert type(lst) == DynamicArray
         res = copy(lst)
