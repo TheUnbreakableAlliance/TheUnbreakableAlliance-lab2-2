@@ -62,7 +62,7 @@ class Iterator(object):
         """ Implement iter(self). """
         return self
 
-    def __next__(self: 'Iterator') -> Optional[int]:
+    def __next__(self: 'Iterator') -> Optional[DeType]:
         """ Implement next(self). """
         self.element_index += 1
         if self.element_index >= self.length:
