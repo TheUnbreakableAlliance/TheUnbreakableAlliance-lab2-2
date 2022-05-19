@@ -54,7 +54,7 @@ class TestDynamicArray(unittest.TestCase):
         self.assertNotEqual(empty1, l1)
         self.assertNotEqual(empty1, l2)
         self.assertNotEqual(l1, l2)
-        self.assertEqual(l1, cons(cons(1, empty1), None))
+        self.assertEqual(l1, cons(cons(empty1, 1), None))
 
     # Remove an element by value
     def test_Remove_an_element(self):
