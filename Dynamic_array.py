@@ -112,8 +112,6 @@ def remove(lst: DynamicArray,
     :return: DynamicArray
     """
     assert type(lst) == DynamicArray
-    if value < 0 or value >= lst.length:
-        raise Exception('The location is not in the array')
     res = DynamicArray()
     for i in range(lst.length):
         if i != value:
