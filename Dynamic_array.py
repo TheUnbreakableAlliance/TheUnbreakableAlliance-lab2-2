@@ -6,7 +6,7 @@ class DynamicArray(object):
         self.length = 0  # Actual number of elements in dynamic array
         self.capacity = capacity  # Initialize chunk of memory size to 1
         self.grow_factor = grow_factor  # grow_factor is set to 1.2
-        self.chunk = [None] * self.capacity # Allocate initialized blocks
+        self.chunk = [None] * self.capacity  # Allocate initialized blocks
 
     def add_element(self, element):
         if element is not None and type(element) != int:
@@ -59,7 +59,7 @@ class Iterator(object):
 
 def copy(lst):
     """ Copy an LST
-    
+
     :param lst: The given DynamicArray
     """
     assert type(lst) is DynamicArray
@@ -166,7 +166,7 @@ def from_list(lst):
 
 
 def find(lst, function):
-    """ Search the array for elements that match the function
+    """ Search the elements that match the function
 
     :param lst: The given DynamicArray
     :param function: The given function
