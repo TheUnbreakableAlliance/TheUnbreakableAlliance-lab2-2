@@ -104,7 +104,7 @@ def cons(lst: Optional[DynamicArray],
 
 
 def remove(lst: DynamicArray,
-           value: Optional[DeType]) -> DynamicArray:
+           value: Optional[int]) -> DynamicArray:
     """ Remove an element of array at specified position.
 
     :param lst: DynamicArray
@@ -166,7 +166,7 @@ def to_list(lst: DynamicArray) -> list:
     :return: list
     """
     assert type(lst) == DynamicArray
-    res = []
+    res: list[int] = []
     for i in range(lst.length):
         res.append(lst.chunk[i])
     return res
