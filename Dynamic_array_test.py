@@ -170,4 +170,6 @@ class TestDynamicArray(unittest.TestCase):
         lst1 = from_list(a)
         lst2 = from_list(b)
         lst3 = from_list(c)
-        self.assertEqual(concat(concat(lst1, lst2), lst3), concat(lst1, concat(lst2, lst3)))
+        self.assertEqual(concat(
+                         concat(lst1, lst2), lst3), 
+                         concat(lst1, concat(lst2, lst3)))
