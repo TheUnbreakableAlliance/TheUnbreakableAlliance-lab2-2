@@ -1,16 +1,20 @@
 from math import ceil
+from typing import Optional, Callable, Any, Union
 
 
 class DynamicArray(object):
-    def __init__(self, capacity=1, grow_factor=0.2):
+    def __init__(self: 'DynamicArray',
+                 capacity: int = 1,
+                 grow_factor: float = 0.2):
         self.length = 0  # Actual number of elements in dynamic array
         self.capacity = capacity  # Initialize chunk of memory size to 1
         self.grow_factor = grow_factor  # grow_factor is set to 1.2
         self.chunk = [None] * self.capacity  # Allocate initialized blocks
 
-    def add_element(self, element):
+    def add_element(self: 'DynamicArray',
+                    element: Optional[int]) -> None:
         if element is not None and type(element) != int:
-            return 'Input data must be int or None, please check it'
+            raise Exception('Input data error, please check it')
         if self.length == self.capacity:
             add_chunk_size = ceil(self.capacity * self.grow_factor)
             self.chunk += [None] * add_chunk_size
@@ -18,10 +22,12 @@ class DynamicArray(object):
         self.chunk[self.length] = element
         self.length += 1
 
-    def __iter__(self):
+    def __iter__(self: 'DynamicArray') \
+            -> 'Iterator':
         return Iterator(self.chunk, self.length)
 
-    def __eq__(self, other):  # Check A is equality to B
+    def __eq__(self: 'DynamicArray',
+               other) -> bool:  # Check A is equality to B
         """for eq() implementation"""
         assert type(other) == DynamicArray
         if self.length != other.length:
@@ -40,16 +46,19 @@ class DynamicArray(object):
 class Iterator(object):
     """ An iterator object of DynamicArray. """
 
-    def __init__(self, chunk, length):
+    def __init__(self: 'DynamicArray',
+                 chunk: list[Optional[int]],
+                 length: int) -> None:
         self.chunk = chunk
         self.length = length
         self.element_index = -1
 
-    def __iter__(self):
+    def __iter__(self: 'Iterator') \
+            -> Optional['Iterator']:
         """ Implement iter(self). """
         return self
 
-    def __next__(self):
+    def __next__(self: 'Iterator') -> Optional[int]:
         """ Implement next(self). """
         self.element_index += 1
         if self.element_index >= self.length:
@@ -57,10 +66,15 @@ class Iterator(object):
         return self.chunk[self.element_index]
 
 
-def copy(lst):
+DeType = Union[int, str, None]
+Default = Union['DynamicArray', None]
+
+
+def copy(lst: DynamicArray) -> DynamicArray:
     """ Copy an LST
 
-    :param lst: The given DynamicArray
+    :param lst: DynamicArray
+    :return: DynamicArray
     """
     assert type(lst) is DynamicArray
     if lst.length == lst.capacity:
@@ -75,11 +89,13 @@ def copy(lst):
     return res
 
 
-def cons(lst, element=None):
+def cons(lst: Optional[DynamicArray],
+         element: Optional[int] = None) -> DynamicArray:
     """ Add an element at the end of the array.
 
-    :param lst: The given DynamicArray
+    :param lst: DynamicArray
     :param element: The given element
+    :return: DynamicArray
     """
     if type(lst) is int and type(element) == DynamicArray:
         res = cons(element, lst)
@@ -90,15 +106,17 @@ def cons(lst, element=None):
     return res
 
 
-def remove(lst, value=None):
+def remove(lst: DynamicArray,
+           value: int = None) -> DynamicArray:
     """ Remove an element of array at specified position.
 
-    :param lst: The given DynamicArray
-    :param value: Index of the array.
+    :param lst: DynamicArray
+    :param value: int
+    :return: DynamicArray
     """
     assert type(lst) == DynamicArray
     if value < 0 or value >= lst.length:
-        return 'The location accessed is not in the dynamic array'
+        raise Exception('The location is not in the array')
     res = DynamicArray()
     for i in range(lst.length):
         if i != value:
@@ -106,21 +124,23 @@ def remove(lst, value=None):
     return res
 
 
-def length(lst):
+def length(lst: DynamicArray) -> int:
     """ Return the length of array.
 
-    :param lst: The given DynamicArray
+    :param lst: DynamicArray
+    :return: int
     """
     assert type(lst) == DynamicArray
     return lst.length
 
 
-def member(lst, v):
+def member(lst: DynamicArray,
+           v: int = None) -> bool:
     """ Determines whether the given value is a member of the array.
 
-    :param lst: The given DynamicArray
-    :param v: The given value.
-    :return: Value is member if return True, else not.
+    :param lst: DynamicArray
+    :param v: int
+    :return: bool
     """
     assert type(lst) == DynamicArray
     if v not in lst.chunk[:lst.length]:
@@ -129,10 +149,11 @@ def member(lst, v):
         return True
 
 
-def reverse(lst):
+def reverse(lst: DynamicArray) -> DynamicArray:
     """ Reverse the array.
 
     :param lst: The given DynamicArray
+    :return: DynamicArray
     """
     assert type(lst) == DynamicArray
     res = DynamicArray(len(lst.chunk))
@@ -141,10 +162,11 @@ def reverse(lst):
     return res
 
 
-def to_list(lst):
+def to_list(lst: DynamicArray) -> list:
     """ Transform the array to a list.
 
-    :param lst: The given DynamicArray
+    :param lst: DynamicArray
+    :return: list
     """
     assert type(lst) == DynamicArray
     res = []
@@ -153,10 +175,11 @@ def to_list(lst):
     return res
 
 
-def from_list(lst):
+def from_list(lst: list) -> DynamicArray:
     """ Add elements from a list to the empty array
 
-    :param lst: The given list
+    :param lst: list
+    :return: DynamicArray
     """
     assert type(lst) == list
     res = DynamicArray()
@@ -165,12 +188,13 @@ def from_list(lst):
     return res
 
 
-def find(lst, function):
+def find(lst: DynamicArray,
+         function: Callable[[...], Any]) -> bool:
     """ Search the elements that match the function
 
-    :param lst: The given DynamicArray
-    :param function: The given function
-    :return: Ture or Flase
+    :param lst: DynamicArray
+    :param function: function
+    :return: bool
     """
     assert callable(function)
     for i in lst.chunk:
@@ -179,12 +203,13 @@ def find(lst, function):
     return False
 
 
-def filter(lst, function):
+def filter(lst: DynamicArray,
+           function: Callable[[...], Any]) -> DynamicArray:
     """ Filter the array by specific function
 
-    :param lst: The given DynamicArray
-    :param function: The given function
-    :return: The transformed array
+    :param lst: DynamicArray
+    :param function: Any
+    :return: DynamicArray
     """
     assert callable(function)
     res = DynamicArray(len(lst.chunk))
@@ -194,13 +219,14 @@ def filter(lst, function):
     return res
 
 
-def map(lst, function):
+def map(lst: DynamicArray,
+        function: Callable[[...], Any]) -> DynamicArray:
     """ Applied function to every item of instances of DynamicArray,
     yielding the results.
 
-    :param lst: The given DynamicArray
-    :param function: The given function
-    :return: The transformed array
+    :param lst: DynamicArray
+    :param function: Any
+    :return: DynamicArray
     """
     assert type(lst) == DynamicArray
     assert callable(function)
@@ -210,13 +236,15 @@ def map(lst, function):
     return res
 
 
-def reduce(lst, function, initial_state):
+def reduce(lst: DynamicArray,
+           function: Callable[[Any, Optional[int]], Any],
+           initial_state: Optional[int] = None) -> DeType:
     """  Apply function of two arguments cumulatively to the items of the
          array, from left to right, to reduce the array to a single value.
 
-    :param lst: The given DynamicArray
-    :param function: The given function
-    :param initial_state: the optional initializer
+    :param lst: DynamicArray
+    :param function: Any
+    :param initial_state: Any
     """
     assert type(lst) == DynamicArray
     assert callable(function)
@@ -228,7 +256,7 @@ def reduce(lst, function, initial_state):
     return state
 
 
-def iterator(lst):
+def iterator(lst: DynamicArray) -> Iterator:
     """ An iterator object of DynamicArray.
 
     :param lst: The given DynamicArray
@@ -236,17 +264,18 @@ def iterator(lst):
     return iter(lst)
 
 
-def empty():
+def empty() -> DynamicArray:
     """ An empty array"""
-    return DynamicArray
+    return DynamicArray()
 
 
-def concat(lst1, lst2):
+def concat(lst1: DynamicArray,
+           lst2: DynamicArray) -> DynamicArray:
     """ Concatenate arrays 1 and 2
 
-    :param lst1: The given DynamicArray1
-    :param lst2: The given DynamicArray2
-    :return: Concatenated array
+    :param lst1: DynamicArray
+    :param lst2: DynamicArray
+    :return: DynamicArray
     """
     assert type(lst1) == DynamicArray
     res = DynamicArray()
@@ -257,18 +286,22 @@ def concat(lst1, lst2):
     return res
 
 
-def eq(lst1, lst2):
+def eq(lst1: DynamicArray,
+       lst2: DynamicArray) -> bool:
     """ Check whether two arrays are equal
 
-    :return: Ture or Flase
+    :return: bool
     """
     assert type(lst1) == DynamicArray
     assert type(lst2) == DynamicArray
     return lst1.__eq__(lst2)
 
 
-def str1(lst):
-    """ Returns the string version of an array element"""
+def str1(lst: DynamicArray) -> str:
+    """ Returns the string version of an array element
+    :param lst:
+    :return: str
+    """
     assert type(lst) == DynamicArray
     res = str(lst.chunk[:lst.length])
     return res
