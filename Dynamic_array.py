@@ -186,7 +186,7 @@ def from_list(lst: list) -> DynamicArray:
 
 
 def find(lst: DynamicArray,
-         function: Callable[[Optional[int]], Any]) -> bool:
+         function: Callable[[Optional[DeType]], Any]) -> bool:
     """ Search the elements that match the function
 
     :param lst: DynamicArray
@@ -201,7 +201,7 @@ def find(lst: DynamicArray,
 
 
 def filter(lst: DynamicArray,
-           function: Callable[[Optional[int]], Any]) -> DynamicArray:
+           function: Callable[[Optional[DeType]], Any]) -> DynamicArray:
     """ Filter the array by specific function
 
     :param lst: DynamicArray
@@ -217,7 +217,7 @@ def filter(lst: DynamicArray,
 
 
 def map(lst: DynamicArray,
-        function: Callable[[Optional[int]], Any]) -> DynamicArray:
+        function: Callable[[Optional[DeType]], Any]) -> DynamicArray:
     """ Applied function to every item of instances of DynamicArray,
     yielding the results.
 
@@ -234,7 +234,7 @@ def map(lst: DynamicArray,
 
 
 def reduce(lst: DynamicArray,
-           function: Callable[[Any, Optional[int]], Any],
+           function: Callable[[Any, Optional[DeType]], Any],
            initial_state: Optional[int] = None) -> DeType:
     """  Apply function of two arguments cumulatively to the items of the
          array, from left to right, to reduce the array to a single value.
