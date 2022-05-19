@@ -13,7 +13,7 @@ class DynamicArray(object):
         self.length = 0  # Actual number of elements in dynamic array
         self.capacity = capacity  # Initialize chunk of memory size to 1
         self.grow_factor = grow_factor  # grow_factor is set to 1.2
-        self.chunk = [None] * self.capacity  # Allocate initialized blocks
+        self.chunk: list[DeType] = [None] * self.capacity  # initialized blocks
 
     def add_element(self: 'DynamicArray',
                     element: Optional[DeType]) -> None:
