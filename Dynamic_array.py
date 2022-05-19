@@ -107,7 +107,7 @@ def cons(lst: Optional[DynamicArray],
 
 
 def remove(lst: DynamicArray,
-           value: int = None) -> DynamicArray:
+           value: Optional[int] = None) -> DynamicArray:
     """ Remove an element of array at specified position.
 
     :param lst: DynamicArray
