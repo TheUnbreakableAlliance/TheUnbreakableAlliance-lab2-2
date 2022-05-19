@@ -2,6 +2,10 @@ from math import ceil
 from typing import Optional, Callable, Any, Union
 
 
+DeType = Union[int, str, None]
+Default = Union['DynamicArray', None]
+
+
 class DynamicArray(object):
     def __init__(self: 'DynamicArray',
                  capacity: int = 1,
@@ -12,7 +16,7 @@ class DynamicArray(object):
         self.chunk = [None] * self.capacity  # Allocate initialized blocks
 
     def add_element(self: 'DynamicArray',
-                    element: Optional[int]) -> None:
+                    element: Optional[DeType]) -> None:
         if element is not None and type(element) != int:
             raise Exception('Input data error, please check it')
         if self.length == self.capacity:
@@ -64,10 +68,6 @@ class Iterator(object):
         if self.element_index >= self.length:
             raise StopIteration()
         return self.chunk[self.element_index]
-
-
-DeType = Union[int, str, None]
-Default = Union['DynamicArray', None]
 
 
 def copy(lst: DynamicArray) -> DynamicArray:
