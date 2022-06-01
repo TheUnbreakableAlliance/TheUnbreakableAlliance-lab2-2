@@ -300,3 +300,7 @@ def str1(lst: DynamicArray) -> str:
     assert type(lst) == DynamicArray
     res = str(lst.chunk[:lst.length])
     return res
+
+
+s1=(1.3625* 10**7)/(3600*16)
+print(s1)

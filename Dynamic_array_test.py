@@ -173,3 +173,32 @@ class TestDynamicArray(unittest.TestCase):
         self.assertEqual(concat(
                          concat(lst1, lst2), lst3),
                          concat(lst1, concat(lst2, lst3)))
+
+    @given(lst=st.lists(st.integers()))
+    def test_immutable(self, lst):
+        l1 = from_list(lst)
+        lst1 = []
+        for i in lst:
+            lst1.append(i)
+        self.assertEqual(lst, lst1)
+        lst2 = to_list(l1)
+        self.assertEqual(lst, lst1)
+        self.assertEqual(lst, lst2)
+        cons(l1, 10)
+        self.assertEqual(l1, from_list(lst))
+        if len(lst) > 0:
+            remove(l1, 0)
+            self.assertEqual(l1, from_list(lst))
+            member(l1, lst[0])
+            self.assertEqual(l1, from_list(lst))
+            find(l1, lambda x: x % 2 == 0)
+            self.assertEqual(l1, from_list(lst))
+        reverse(l1)
+        self.assertEqual(l1, from_list(lst))
+        filter(l1, lambda x: x % 2 == 0)
+        self.assertEqual(l1, from_list(lst))
+        map(l1, lambda x: x * 2)
+        self.assertEqual(l1, from_list(lst))
+        if len(lst) > 1:
+            reduce(l1, lambda x, y: x + y, 1)
+            self.assertEqual(l1, from_list(lst))
